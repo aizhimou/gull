@@ -9,7 +9,6 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  VERSION: 0.0.1
 
 permissions:
   contents: read
@@ -30,6 +29,15 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Read version
+        run: |
+          VERSION=$(sed -n 's/^[[:space:]]*Version[[:space:]]*=[[:space:]]*"\([^"]\+\)".*/\1/p' internal/core/version/version.go)
+          if [ -z "$VERSION" ]; then
+            echo "Version not found in internal/core/version/version.go" >&2
+            exit 1
+          fi
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
 
       - name: Prepare tags
         id: tags
