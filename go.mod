@@ -1,6 +1,6 @@
 module github.com/guiyumin/vget
 
-go 1.22
+go 1.23
 
 require (
 	codeberg.org/gruf/go-ffmpreg v0.6.16
