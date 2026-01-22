@@ -1,0 +1,29 @@
+# Build artifacts
+build/
+tmp/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Go build cache
+**/.cache/
+
+# Development files
+.git/
+.gitignore
+.air.toml
+.vscode/
+.idea/
+*.md
+!README.md
+
+# Config and secrets
+*.env
+*.local
+config.yml
+config.yaml
+
+# OS files
+.DS_Store
+Thumbs.db
